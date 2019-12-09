@@ -1,0 +1,13 @@
+shader colorSelect(
+    color C1 = 0,
+    color C2 = 0,
+    float cond_input = 0,
+    float cond12_factor = 0,
+    output color Output = 0.0    
+    )
+{
+    if(cond_input < cond12_factor)
+        Output = C1;
+    else
+        Output = C2;
+}
