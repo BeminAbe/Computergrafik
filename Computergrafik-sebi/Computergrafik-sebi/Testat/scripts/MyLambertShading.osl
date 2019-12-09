@@ -1,0 +1,30 @@
+#include "stdosl.h"
+
+shader MyLabertShading(normal Normal = N,                           
+                       color AmbientColor = 1.0,
+                       color DiffuseColor = 0.8,
+                       vector LightPosWorld = 0.0,
+                       output color SurfaceColor = 0.0)
+{
+    // create closure surface color with integrated diffusion function
+    // SurfaceColor = BaseColor * diffuse(N);
+    
+    // transform normal vector into worldspace
+    // See Table 5.2 in OCL specification
+    vector n = transform("world", Normal);
+    
+    // compute light direction between world position of light and world position of object
+    // P is one of the global variables accessable in the Shader See Table 6.1 in OCL Specification
+    vector l = LightPosWorld - transform("world", P);
+    
+    // Alternativley the normal and light vector can be transformed into object space
+    // it is important that both vectors are in the same coordinate system
+    //vector n = transform("object", Normal);
+    //vector l = transform("object", LightPosWorld) - transform("object", P);
+    
+    // compute truncated dot product between normal vector and light pos
+    float nl = max(dot(normalize(n), normalize(l)), 0);
+    
+    // create surface color
+    SurfaceColor = AmbientColor + (DiffuseColor/M_PI ) * nl;
+}
