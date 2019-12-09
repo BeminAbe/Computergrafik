@@ -1,7 +1,0 @@
-shader StringConstant(
-    string text = "",
-    output string outText = ""
-    )
-{
-    outText = text;    
-}
