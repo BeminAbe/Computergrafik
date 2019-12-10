@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -o C:\Users\Armin\AppData\Local\Temp\tmp6a55vjg0.oso -IC:\Program Files\Blender Foundation\Blender 2.81\2.81\scripts\addons\cycles\shader
+# options: -o C:\Users\Armin\AppData\Local\Temp\tmp4hw4hk8t.oso -IC:\Program Files\Blender Foundation\Blender 2.81\2.81\scripts\addons\cycles\shader
 shader MyLabertShading
 param	normal	Normal	0 0 0		%read{2,2} %write{0,0} %initexpr
 param	color	AmbientColor	1 1 1		%read{12,12} %write{2147483647,-1}
