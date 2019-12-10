@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -o C:\Users\Armin\AppData\Local\Temp\tmpwbvflw4w.oso -IC:\Program Files\Blender Foundation\Blender 2.81\2.81\scripts\addons\cycles\shader
+# options: -o C:\Users\Armin\AppData\Local\Temp\tmptn72cw25.oso -IC:\Program Files\Blender Foundation\Blender 2.81\2.81\scripts\addons\cycles\shader
 shader MyPhongShading
 param	normal	Normal	0 0 0		%read{2,2} %write{0,0} %initexpr
 param	color	AmbientColor	1 1 1		%read{19,19} %write{2147483647,-1}

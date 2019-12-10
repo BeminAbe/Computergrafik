@@ -1,17 +1,18 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -o C:\Users\Armin\AppData\Local\Temp\tmpa72o11w2.oso -IC:\Program Files\Blender Foundation\Blender 2.81\2.81\scripts\addons\cycles\shader
+# options: -o C:\Users\Armin\Desktop\Computergrafik\Testat\scripts\MyDisplacement.oso -IC:\Program Files\Blender Foundation\Blender 2.81\2.81\scripts\addons\cycles\shader
 shader MyDisplacement
 param	point	UV	0 0 0		%read{26,34} %write{2147483647,-1} %derivs
 param	point	UV_point1	0 0 0		%read{1,1} %write{2147483647,-1} %derivs
 param	point	UV_point2	1 1 1		%read{2,2} %write{2147483647,-1} %derivs
-param	normal	Normal	0 0 0		%read{41,41} %write{2147483647,-1}
-param	float	scale	1		%read{44,44} %write{2147483647,-1}
-param	float	exponential_scale	1		%read{42,42} %write{2147483647,-1}
-param	float	water_level	0		%read{38,40} %write{2147483647,-1}
+param	normal	Normal	0 0 0		%read{42,42} %write{2147483647,-1}
+param	float	scale	1		%read{45,45} %write{2147483647,-1}
+param	float	exponential_scale	1		%read{43,43} %write{2147483647,-1}
+param	float	water_level	0		%read{39,41} %write{2147483647,-1}
 param	string	filename	""		%read{20,37} %write{2147483647,-1}
-oparam	vector	Displacement	0 0 0		%read{2147483647,-1} %write{44,44}
-local	float	height	%read{38,42} %write{0,40}
+oparam	color	Color	0 0 0		%read{2147483647,-1} %write{38,38}
+oparam	vector	Displacement	0 0 0		%read{2147483647,-1} %write{45,45}
+local	float	height	%read{38,43} %write{0,41}
 local	point	p1	%read{4,32} %write{1,18} %derivs
 local	point	p2	%read{5,31} %write{2,19} %derivs
 local	float	p	%read{11,19} %write{3,16} %derivs
@@ -43,62 +44,62 @@ temp	float	$tmp21	%read{35,35} %write{33,33} %derivs
 temp	float	$tmp22	%read{35,35} %write{34,34} %derivs
 temp	float	$tmp23	%read{36,36} %write{35,35} %derivs
 temp	float	$tmp24	%read{37,37} %write{36,36} %derivs
-temp	int	$tmp25	%read{39,39} %write{38,38}
-temp	normal	$tmp26	%read{43,43} %write{41,41}
-temp	float	$tmp27	%read{43,43} %write{42,42}
-temp	normal	$tmp28	%read{44,44} %write{43,43}
+temp	int	$tmp25	%read{40,40} %write{39,39}
+temp	normal	$tmp26	%read{44,44} %write{42,42}
+temp	float	$tmp27	%read{44,44} %write{43,43}
+temp	normal	$tmp28	%read{45,45} %write{44,44}
 code ___main___
-# scripts\MyDisplacement.osl:14
+# scripts\MyDisplacement.osl:15
 #     
-	assign		height $const1 	%filename{"scripts\MyDisplacement.osl"} %line{14} %argrw{"wr"}
-# scripts\MyDisplacement.osl:16
-#     point p2 = UV_point2;
-	assign		p1 UV_point1 	%line{16} %argrw{"wr"}
+	assign		height $const1 	%filename{"scripts\MyDisplacement.osl"} %line{15} %argrw{"wr"}
 # scripts\MyDisplacement.osl:17
-#     float p = 0;
-	assign		p2 UV_point2 	%line{17} %argrw{"wr"}
+#     point p2 = UV_point2;
+	assign		p1 UV_point1 	%line{17} %argrw{"wr"}
 # scripts\MyDisplacement.osl:18
+#     float p = 0;
+	assign		p2 UV_point2 	%line{18} %argrw{"wr"}
+# scripts\MyDisplacement.osl:19
 #     
-	assign		p $const1 	%line{18} %argrw{"wr"}
-# scripts\MyDisplacement.osl:20
+	assign		p $const1 	%line{19} %argrw{"wr"}
+# scripts\MyDisplacement.osl:24
 #         p = p1[0];
-	compref		$tmp1 p1 $const1 	%line{20} %argrw{"wrr"}
+	compref		$tmp1 p1 $const1 	%line{24} %argrw{"wrr"}
 	compref		$tmp2 p2 $const1 	%argrw{"wrr"}
 	gt		$tmp3 $tmp1 $tmp2 	%argrw{"wrr"}
 	if		$tmp3 9 9 	%argrw{"r"}
-# scripts\MyDisplacement.osl:21
-#         p1[0] = p2[0];
-	compref		p p1 $const1 	%line{21} %argrw{"wrr"}
-# scripts\MyDisplacement.osl:22
-#         p2[0] = p;
-	compref		$tmp4 p2 $const1 	%line{22} %argrw{"wrr"}
-	compassign	p1 $const1 $tmp4 	%argrw{"wrr"}
-# scripts\MyDisplacement.osl:23
-#         
-	compassign	p2 $const1 p 	%line{23} %argrw{"wrr"}
 # scripts\MyDisplacement.osl:25
+#         p1[0] = p2[0];
+	compref		p p1 $const1 	%line{25} %argrw{"wrr"}
+# scripts\MyDisplacement.osl:26
+#         p2[0] = p;
+	compref		$tmp4 p2 $const1 	%line{26} %argrw{"wrr"}
+	compassign	p1 $const1 $tmp4 	%argrw{"wrr"}
+# scripts\MyDisplacement.osl:27
+#         
+	compassign	p2 $const1 p 	%line{27} %argrw{"wrr"}
+# scripts\MyDisplacement.osl:29
 #         p = p1[1];
-	compref		$tmp5 p1 $const2 	%line{25} %argrw{"wrr"}
+	compref		$tmp5 p1 $const2 	%line{29} %argrw{"wrr"}
 	compref		$tmp6 p2 $const2 	%argrw{"wrr"}
 	gt		$tmp7 $tmp5 $tmp6 	%argrw{"wrr"}
 	if		$tmp7 17 17 	%argrw{"r"}
-# scripts\MyDisplacement.osl:26
-#         p1[1] = p2[1];
-	compref		p p1 $const2 	%line{26} %argrw{"wrr"}
-# scripts\MyDisplacement.osl:27
-#         p2[1] = p;
-	compref		$tmp8 p2 $const2 	%line{27} %argrw{"wrr"}
-	compassign	p1 $const2 $tmp8 	%argrw{"wrr"}
-# scripts\MyDisplacement.osl:28
-#    
-	compassign	p2 $const2 p 	%line{28} %argrw{"wrr"}
 # scripts\MyDisplacement.osl:30
+#         p1[1] = p2[1];
+	compref		p p1 $const2 	%line{30} %argrw{"wrr"}
+# scripts\MyDisplacement.osl:31
+#         p2[1] = p;
+	compref		$tmp8 p2 $const2 	%line{31} %argrw{"wrr"}
+	compassign	p1 $const2 $tmp8 	%argrw{"wrr"}
+# scripts\MyDisplacement.osl:32
+#      
+	compassign	p2 $const2 p 	%line{32} %argrw{"wrr"}
+# scripts\MyDisplacement.osl:37
 #         height = texture(
-	neq		$tmp9 filename $const3 	%line{30} %argrw{"wrr"}
+	neq		$tmp9 filename $const3 	%line{37} %argrw{"wrr"}
 	if		$tmp9 38 38 	%argrw{"r"}
-# scripts\MyDisplacement.osl:33
+# scripts\MyDisplacement.osl:40
 #             p1[1] + (p2[1]-p1[1]) * (UV[1]) 
-	compref		$tmp10 p1 $const1 	%line{33} %argrw{"wrr"}
+	compref		$tmp10 p1 $const1 	%line{40} %argrw{"wrr"}
 	compref		$tmp11 p2 $const1 	%argrw{"wrr"}
 	compref		$tmp12 p1 $const1 	%argrw{"wrr"}
 	sub		$tmp13 $tmp11 $tmp12 	%argrw{"wrr"}
@@ -106,28 +107,31 @@ code ___main___
 	sub		$tmp15 $const4 $tmp14 	%argrw{"wrr"}
 	mul		$tmp16 $tmp13 $tmp15 	%argrw{"wrr"}
 	add		$tmp17 $tmp10 $tmp16 	%argrw{"wrr"}
-# scripts\MyDisplacement.osl:34
+# scripts\MyDisplacement.osl:41
 #             ); 
-	compref		$tmp18 p1 $const2 	%line{34} %argrw{"wrr"}
+	compref		$tmp18 p1 $const2 	%line{41} %argrw{"wrr"}
 	compref		$tmp19 p2 $const2 	%argrw{"wrr"}
 	compref		$tmp20 p1 $const2 	%argrw{"wrr"}
 	sub		$tmp21 $tmp19 $tmp20 	%argrw{"wrr"}
 	compref		$tmp22 UV $const2 	%argrw{"wrr"}
 	mul		$tmp23 $tmp21 $tmp22 	%argrw{"wrr"}
-# scripts\MyDisplacement.osl:35
-#             
-	add		$tmp24 $tmp18 $tmp23 	%line{35} %argrw{"wrr"}
+# scripts\MyDisplacement.osl:42
+#         Color = height;
+	add		$tmp24 $tmp18 $tmp23 	%line{42} %argrw{"wrr"}
 	texture		height filename $tmp17 $tmp24 	%argrw{"wrrr"} %argderivs{2,3}
-# scripts\MyDisplacement.osl:47
+# scripts\MyDisplacement.osl:43
+#             
+	assign		Color height 	%line{43} %argrw{"wr"}
+# scripts\MyDisplacement.osl:55
 #         height = water_level;
-	lt		$tmp25 height water_level 	%line{47} %argrw{"wrr"}
-	if		$tmp25 41 41 	%argrw{"r"}
-# scripts\MyDisplacement.osl:48
+	lt		$tmp25 height water_level 	%line{55} %argrw{"wrr"}
+	if		$tmp25 42 42 	%argrw{"r"}
+# scripts\MyDisplacement.osl:56
 #     Displacement = normalize(Normal) * pow(height,exponential_scale) * scale ; 
-	assign		height water_level 	%line{48} %argrw{"wr"}
-# scripts\MyDisplacement.osl:49
+	assign		height water_level 	%line{56} %argrw{"wr"}
+# scripts\MyDisplacement.osl:57
 # }
-	normalize	$tmp26 Normal 	%line{49} %argrw{"wr"}
+	normalize	$tmp26 Normal 	%line{57} %argrw{"wr"}
 	pow		$tmp27 height exponential_scale 	%argrw{"wrr"}
 	mul		$tmp28 $tmp26 $tmp27 	%argrw{"wrr"}
 	mul		Displacement $tmp28 scale 	%argrw{"wrr"}
