@@ -5,8 +5,8 @@ import random
 
 
 # define resolution
-xRange = 1000
-yRange = 1000
+xRange = 512
+yRange = 512
 
 image = bpy.data.images.new("MyImage", width=xRange, height=yRange)
 pixelVec = {}
@@ -17,14 +17,14 @@ min = 10.0
 
 
 scaling = 0.002
-offset = random.random()
+offset = random.random()*xRange
 
 # iterate through all pixels
 pixels = [None] * xRange * yRange
 for x in range(xRange):
     for y in range(yRange):
         # perlin noise
-        pixelVec[x, y] = mathutils.noise.hetero_terrain([x*scaling+offset, y*scaling+offset, 0], 1.0, 1.0, 1, 0, noise_basis='PERLIN_ORIGINAL')
+        pixelVec[x, y] = mathutils.noise.hetero_terrain([(x+offset)*scaling, (y+offset)*scaling, 0], 1.0, 1.0, 1, 0, noise_basis='PERLIN_ORIGINAL')
         # check if value is greater than max or lesser than min
         if pixelVec[x, y] > max:
             max = pixelVec[x, y]
