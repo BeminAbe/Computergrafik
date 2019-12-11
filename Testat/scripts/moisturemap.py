@@ -4,9 +4,10 @@ import bpy
 import random
 
 
-# define resolution
-xRange = 512
-yRange = 512
+# get resolution from hightmap
+heightmap = bpy.data.images.load("//textures/heightmapt.png")
+xRange = heightmap.size[0]
+yRange = heightmap.size[1]
 
 image = bpy.data.images.new("MyImage", width=xRange, height=yRange)
 pixelVec = {}
