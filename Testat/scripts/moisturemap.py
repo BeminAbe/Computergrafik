@@ -5,7 +5,7 @@ import random
 
 
 # get resolution from hightmap
-heightmap = bpy.data.images.load("//textures/heightmapt.png")
+heightmap = bpy.data.images.load("//textures/heightmap.png")
 xRange = heightmap.size[0]
 yRange = heightmap.size[1]
 
@@ -17,7 +17,7 @@ max = 0.0
 min = 10.0
 
 
-scaling = 0.002
+scaling = 0.004
 offset = random.random()*xRange
 
 # iterate through all pixels
