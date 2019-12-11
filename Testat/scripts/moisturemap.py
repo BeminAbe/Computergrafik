@@ -5,8 +5,8 @@ import random
 
 
 # define resolution
-xRange = 1000
-yRange = 1000
+xRange = 512
+yRange = 512
 
 image = bpy.data.images.new("MyImage", width=xRange, height=yRange)
 pixelVec = {}

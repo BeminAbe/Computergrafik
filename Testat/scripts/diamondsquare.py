@@ -11,7 +11,7 @@ import bpy
 
 
 ############## texture size
-pixelwidth = 256
+pixelwidth = 512
 
 # derived parameters for diamondsquare algorithm
 nth = math.ceil(math. log(pixelwidth,2))
@@ -43,8 +43,8 @@ def clamp_diamond_square(array):
     minval = array[0,0]
     maxval = array[0,0]
     
-    for x in range(0, sidelength):
-        for y in range(0, sidelength): 
+    for x in range(0, pixelwidth):
+        for y in range(0, pixelwidth): 
             if array[x,y] > maxval: maxval = array[x,y]
             if array[x,y] < minval: minval = array[x,y]
                             
